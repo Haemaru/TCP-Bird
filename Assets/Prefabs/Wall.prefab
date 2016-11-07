@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6c197399ece6f4b9e3b23b576cfada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyTime: 15
+  DestroyTime: 10
   YIntervalRange: 1
   UpWall: {fileID: 4000010179402970}
   DownWall: {fileID: 4000012481141542}

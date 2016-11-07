@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public Text ScoreText;
+    public GameObject GameOver;
     public float WallSpeed = 2f;
 
     int score = 0;
@@ -22,6 +26,7 @@ public class GameManager : MonoBehaviour
     public void AddScore()
     {
         score++;
+        ScoreText.text = score.ToString();
         Debug.Log("Score : " + score);
     }
 
@@ -33,5 +38,11 @@ public class GameManager : MonoBehaviour
 
             WallSpeed += 0.1f;
         }
+    }
+
+    public void RestartGame()
+    {
+        int index = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(index);
     }
 }

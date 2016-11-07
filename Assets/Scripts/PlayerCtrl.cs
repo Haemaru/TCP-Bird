@@ -33,6 +33,7 @@ public class PlayerCtrl : MonoBehaviour
         {
             Alive = false;
             Debug.Log("Player dead");
+            GameManager.Instance.GameOver.SetActive(true);
         }
     }
 }

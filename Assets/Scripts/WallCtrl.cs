@@ -10,20 +10,22 @@ public class WallCtrl : MonoBehaviour
     public Transform DownWall;
 
     Transform tr;
+    Vector3 originalPos;
 
     void Awake()
     {
         tr = GetComponent<Transform>();
+        originalPos = new Vector3(tr.position.x, tr.position.y, tr.position.z);
     }
 
-	void Start()
+    void OnEnable()
     {
         float yInterval = Random.Range(0, YIntervalRange);
         UpWall.localPosition = new Vector3(0, UpWall.position.y + yInterval, 0);
         DownWall.localPosition = new Vector3(0, DownWall.position.y - yInterval, 0);
 
-        StartCoroutine(DestroyRoutine());    
-	}
+        StartCoroutine(DestroyRoutine());
+    }
 	
 	void Update()
     {
@@ -34,7 +36,8 @@ public class WallCtrl : MonoBehaviour
     {
         yield return new WaitForSeconds(DestroyTime);
 
-        Destroy(gameObject);
+        tr.position = originalPos;
+        Spawner.Instance.ReturnPooledWall(gameObject);
     }
 
     void OnTriggerExit2D(Collider2D coll)
